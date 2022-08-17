@@ -1,0 +1,14 @@
+.css-137kk77-MuiTypography-root-MuiLink-root {
+  color: #000 !important;
+}
+.css-137kk77-MuiTypography-root-MuiLink-root::after {
+  content: "";
+  width: 0px;
+  height: 1px;
+  display: block;
+  background: black;
+  transition: 300ms;
+}
+.css-137kk77-MuiTypography-root-MuiLink-root:hover::after {
+  width: 100%;
+}
