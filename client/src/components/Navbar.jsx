@@ -1,12 +1,15 @@
 import React from "react";
 import { IconButton } from "@mui/material";
 import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
-import './css/Navbar.css'
+import AccountMenu from "./subComponents/AccountMenu";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+
+import { Link as Rlink } from "react-router-dom";
+import "./css/Navbar.css";
 
 const Navbar = () => {
   return (
@@ -36,14 +39,15 @@ const Navbar = () => {
             alignItems: "center",
           }}
         >
-          <Link 
-          variant="h5" 
-          color="black" 
-          aria-label="logo" 
-          underline="none" 
-          sx={{fontWeight:'medium'}}>
+          <Typography
+            variant="h5"
+            color="black"
+            aria-label="logo"
+            underline="none"
+            sx={{ fontWeight: "medium" }}
+          >
             FITZ
-          </Link>
+          </Typography>
         </Box>
         <Box
           sx={{
@@ -53,12 +57,15 @@ const Navbar = () => {
             alignItems: "center",
           }}
         >
-          <Link variant="body1" to="/" underline="none" active>
-            Home
-          </Link>
-          <Link variant="body1" to="/products" underline="none">
-            Products
-          </Link>
+          <Typography variant="body1" underline="none">
+            <Rlink to="/">Home</Rlink>
+          </Typography>
+          <Typography variant="body1" to="/products" underline="none">
+          <Rlink to="/products">Products</Rlink>
+          </Typography>
+          <Typography variant="body1" to="/products" underline="none">
+          <Rlink to="/test">test</Rlink>
+          </Typography>
         </Box>
         <Box
           sx={{
@@ -67,24 +74,22 @@ const Navbar = () => {
             alignItems: "center",
           }}
         >
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            color="inherit"
-          >
-            <PersonOutlineIcon />
-          </IconButton>
-          <IconButton color="inherit" aria-label="search">
-            <SearchIcon></SearchIcon>
-          </IconButton>
-          <IconButton color="inherit" aria-label="wishlist">
-            <FavoriteBorderIcon></FavoriteBorderIcon>
-          </IconButton>
-          <IconButton color="inherit" aria-label="cart">
-            <ShoppingBasketOutlinedIcon></ShoppingBasketOutlinedIcon>
-          </IconButton>
+          <AccountMenu />
+          <Tooltip title="Search">
+            <IconButton color="inherit" aria-label="search">
+              <SearchIcon></SearchIcon>
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Wish list">
+            <IconButton color="inherit" aria-label="wishlist">
+              <FavoriteBorderIcon></FavoriteBorderIcon>
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Cart">
+            <IconButton color="inherit" aria-label="cart">
+              <ShoppingBasketOutlinedIcon></ShoppingBasketOutlinedIcon>
+            </IconButton>
+          </Tooltip>
         </Box>
       </Box>
     </>

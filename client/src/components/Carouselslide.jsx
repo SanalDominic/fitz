@@ -12,38 +12,12 @@ import "swiper/css/pagination";
 //import "./styles.css";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
+
+import { CarouselButton } from "./Theme/Custom";
 import "./css/Carousel.css";
 
 // import required modules
-import { Autoplay,EffectFade, Pagination, Mousewheel, Keyboard } from "swiper";
-
-export const CarouselButton = styled(Button)({
-  boxShadow: "none",
-  lineHeight: 1.5,
-  letterSpacing: 1.5,
-  fontSize: 16,
-  textTransform: "none",
-  padding: "1rem",
-  borderColor: "#000",
-  borderRadius: "unset",
-  color: "#000",
-  "&:hover": {
-    backgroundColor: "#000",
-    borderColor: "#000",
-    boxShadow: "none",
-    color: "#fff",
-  },
-  "&:active": {
-    boxShadow: "none",
-    backgroundColor: "#000",
-    borderColor: "#000",
-  },
-  "&:focus": {
-    boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)",
-  },
-});
+import { Autoplay, EffectFade, Pagination, Mousewheel, Keyboard } from "swiper";
 
 const Carouselslide = () => {
   return (
@@ -60,11 +34,14 @@ const Carouselslide = () => {
         pagination={{
           clickable: true,
         }}
-        modules={[Autoplay,EffectFade, Pagination, Mousewheel, Keyboard]}
+        modules={[Autoplay, EffectFade, Pagination, Mousewheel, Keyboard]}
         className="mySwiper"
       >
         <SwiperSlide style={{ display: "relative" }}>
-          <img src="https://cdn.shopify.com/s/files/1/0421/6153/7180/files/img-slider-home-mini.png?v=1605086177" alt="carouselimg" />
+          <img
+            src="https://cdn.shopify.com/s/files/1/0421/6153/7180/files/img-slider-home-mini.png?v=1605086177"
+            alt="carouselimg"
+          />
           <Box sx={{ position: "absolute" }}>
             <Typography
               className="carouselheading"
@@ -91,7 +68,10 @@ const Carouselslide = () => {
           </Box>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://cdn.shopify.com/s/files/1/0421/6153/7180/files/img-slider-home-mini-2.png?v=1605086177" alt="carouselimg" />
+          <img
+            src="https://cdn.shopify.com/s/files/1/0421/6153/7180/files/img-slider-home-mini-2.png?v=1605086177"
+            alt="carouselimg"
+          />
           <Box sx={{ position: "absolute" }}>
             <Typography
               className="carouselheading"
@@ -118,7 +98,10 @@ const Carouselslide = () => {
           </Box>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://cdn.shopify.com/s/files/1/0421/6153/7180/files/img-slider-home-mini-3.png?v=1605086177" alt="carouselimg" />
+          <img
+            src="https://cdn.shopify.com/s/files/1/0421/6153/7180/files/img-slider-home-mini-3.png?v=1605086177"
+            alt="carouselimg"
+          />
           <Box sx={{ position: "absolute" }}>
             <Typography
               className="carouselheading"

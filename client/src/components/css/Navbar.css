@@ -1,7 +1,7 @@
-.css-137kk77-MuiTypography-root-MuiLink-root {
+.css-ahj2mt-MuiTypography-root {
   color: #000 !important;
 }
-.css-137kk77-MuiTypography-root-MuiLink-root::after {
+.css-ahj2mt-MuiTypography-root::after {
   content: "";
   width: 0px;
   height: 1px;
@@ -9,6 +9,11 @@
   background: black;
   transition: 300ms;
 }
-.css-137kk77-MuiTypography-root-MuiLink-root:hover::after {
+.css-ahj2mt-MuiTypography-root:hover::after {
   width: 100%;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+  color: #000;
 }

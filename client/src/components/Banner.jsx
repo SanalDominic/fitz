@@ -4,36 +4,10 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import { Container } from "@mui/system";
-import { styled } from "@mui/material/styles";
-import "./css/Banner.css";
 
-export const CarouselButton = styled(Button)({
-  boxShadow: "none",
-  lineHeight: 1.5,
-  letterSpacing: 1.5,
-  fontSize: 16,
-  textTransform: "none",
-  padding: "1rem",
-  backgroundColor: "#fff",
-  borderRadius: "unset",
-  color: "#000",
-  "&:hover": {
-    backgroundColor: "#000",
-    borderColor: "#000",
-    boxShadow: "none",
-    color: "#fff",
-  },
-  "&:active": {
-    boxShadow: "none",
-    backgroundColor: "#000",
-    borderColor: "#000",
-  },
-  "&:focus": {
-    boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)",
-  },
-});
+import { BannerButton } from "./Theme/Custom";
+import "./css/Banner.css";
 
 const Banner = () => {
   return (
@@ -62,14 +36,14 @@ const Banner = () => {
                   <CardActions
                     sx={{
                       position: "absolute",
-                      zIndex: 2,
+                      zIndex: 4,
                       bottom: "1.5rem",
                       right: "5rem",
                     }}
                   >
-                    <CarouselButton variant="contained">
+                    <BannerButton variant="contained">
                       New Arrivals
-                    </CarouselButton>
+                    </BannerButton>
                   </CardActions>
                 </Box>
               </Card>
@@ -95,12 +69,12 @@ const Banner = () => {
                   <CardActions
                     sx={{
                       position: "absolute",
-                      zIndex: 2,
+                      zIndex: 4,
                       bottom: "1.5rem",
                       right: "5rem",
                     }}
                   >
-                    <CarouselButton variant="contained">Women</CarouselButton>
+                    <BannerButton variant="contained">Women</BannerButton>
                   </CardActions>
                 </Box>
               </Card>
@@ -126,12 +100,12 @@ const Banner = () => {
                   <CardActions
                     sx={{
                       position: "absolute",
-                      zIndex: 2,
+                      zIndex: 4,
                       bottom: "1.5rem",
                       right: "5rem",
                     }}
                   >
-                    <CarouselButton variant="contained">Men</CarouselButton>
+                    <BannerButton variant="contained">Men</BannerButton>
                   </CardActions>
                 </Box>
               </Card>
