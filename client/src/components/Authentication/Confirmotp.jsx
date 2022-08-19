@@ -2,9 +2,9 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
-import { CarouselButton } from "./Theme/Custom";
+import { CarouselButton } from "../Theme/Custom";
 
-const Getotp = ({passwordSet}) => {
+const Confirmotp = ({ passwordSet }) => {
   return (
     <>
       <Typography
@@ -13,19 +13,14 @@ const Getotp = ({passwordSet}) => {
         sx={{ mb: 3 }}
         color="initial"
       >
-        Get Otp
+        Verify Otp
       </Typography>
-      <TextField
-        fullWidth
-        type="number"
-        label="Enter Mobile number *"
-        sx={{ mb: 2 }}
-      />
+      <TextField fullWidth type="number" label="Enter otp *" sx={{ mb: 2 }} />
       <CarouselButton fullWidth onClick={passwordSet}>
-        Send Otp
+        Verify
       </CarouselButton>
     </>
   );
 };
 
-export default Getotp;
+export default Confirmotp;

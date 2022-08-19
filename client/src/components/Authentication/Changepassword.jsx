@@ -2,9 +2,9 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
-import { CarouselButton } from "./Theme/Custom";
+import { CarouselButton } from "../Theme/Custom";
 
-const Changepassword = ({passwordSet}) => {
+const Changepassword = ({ passwordSet }) => {
   return (
     <>
       <Typography

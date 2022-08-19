@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { IconButton } from "@mui/material";
 import Box from "@mui/material/Box";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
-import AccountMenu from "./subComponents/AccountMenu";
+
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 
 import { Link as Rlink } from "react-router-dom";
-import "./css/Navbar.css";
+import "../css/Navbar.css";
+import Search from "./Search";
+import AccountMenu from "./AccountMenu";
 
 const Navbar = () => {
+  const [isDrawerOpen, setDrawOpen] = useState(false);
   return (
     <>
       <Box
@@ -29,7 +32,7 @@ const Navbar = () => {
           justifyContent: "space-between",
           px: 3,
           backgroundColor: "#fff",
-          height: "4rem",
+          height: "5rem",
         }}
       >
         <Box
@@ -61,10 +64,10 @@ const Navbar = () => {
             <Rlink to="/">Home</Rlink>
           </Typography>
           <Typography variant="body1" to="/products" underline="none">
-          <Rlink to="/products">Products</Rlink>
+            <Rlink to="/products">Products</Rlink>
           </Typography>
           <Typography variant="body1" to="/products" underline="none">
-          <Rlink to="/test">test</Rlink>
+            <Rlink to="/test">test</Rlink>
           </Typography>
         </Box>
         <Box
@@ -76,7 +79,11 @@ const Navbar = () => {
         >
           <AccountMenu />
           <Tooltip title="Search">
-            <IconButton color="inherit" aria-label="search">
+            <IconButton
+              color="inherit"
+              aria-label="search"
+              onClick={() => setDrawOpen(true)}
+            >
               <SearchIcon></SearchIcon>
             </IconButton>
           </Tooltip>
@@ -92,6 +99,7 @@ const Navbar = () => {
           </Tooltip>
         </Box>
       </Box>
+      <Search isDrawerOpen={isDrawerOpen} setDrawOpen={setDrawOpen} />
     </>
   );
 };

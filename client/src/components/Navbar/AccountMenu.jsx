@@ -16,8 +16,8 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 
-import Login from "../Login";
-import Signup from "../Signup";
+import Login from "../Authentication/Login";
+import Signup from "../Authentication/Signup";
 
 const style = {
   position: "absolute",

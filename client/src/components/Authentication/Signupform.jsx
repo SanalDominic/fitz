@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-import { CarouselButton, ModalButton } from "./Theme/Custom";
+import { CarouselButton, ModalButton } from "../Theme/Custom";
 
 const Signupform = ({ setToggleAuth, passwordSet }) => {
   const toggle = () => {

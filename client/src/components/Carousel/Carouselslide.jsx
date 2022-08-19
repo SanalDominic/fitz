@@ -13,8 +13,8 @@ import "swiper/css/pagination";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import { CarouselButton } from "./Theme/Custom";
-import "./css/Carousel.css";
+import { CarouselButton } from "../Theme/Custom";
+import "../css/Carousel.css";
 
 // import required modules
 import { Autoplay, EffectFade, Pagination, Mousewheel, Keyboard } from "swiper";

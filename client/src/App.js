@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Landingpage from "./pages/Landingpage";
 import Products from "./pages/Products";
 import { Box } from "@mui/system";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 
 import Test from "./pages/Test";
 
