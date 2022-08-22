@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-// const cookieparser = require("cookie-parser");
+const cookieparser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -19,7 +19,7 @@ mongoose
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(cookieparser());
+app.use(cookieparser());
 
 app.use("/", customerRoute);
 
