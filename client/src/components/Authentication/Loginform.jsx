@@ -22,11 +22,12 @@ const Loginform = ({ setToggleAuth, passwordSet }) => {
       </Typography>
       <TextField
         fullWidth
+        name="email1"
         type="email"
         label="Email Address *"
         sx={{ mb: 2 }}
       />
-      <TextField fullWidth type="password" label="Password *" sx={{ mb: 2 }} />
+      <TextField name="" fullWidth type="password" label="Password *" sx={{ mb: 2 }} />
       <Box display="flex" justifyContent="end">
         <Typography
           color="GrayText"
