@@ -1,0 +1,113 @@
+  // const Validate = () => {
+  //   const newErrors = {};
+
+  //   if (!signupData.fullName || !validFullName.test(signupData.fullName)) {
+  //     newErrors["fullName"] = true;
+  //   } else {
+  //     newErrors["fullName"] = false;
+  //   }
+
+  //   if (!signupData.email || !validEmail.test(signupData.email)) {
+  //     newErrors["email"] = true;
+  //   } else {
+  //     newErrors["email"] = false;
+  //   }
+
+  //   if (!signupData.password || !validPassword.test(signupData.password)) {
+  //     newErrors["password"] = true;
+  //   } else {
+  //     newErrors["password"] = false;
+  //   }
+
+  //   if (
+  //     !(signupData.password === signupData.confirmPassword) ||
+  //     !signupData.confirmPassword
+  //   ) {
+  //     newErrors["confirmPassword"] = true;
+  //   } else {
+  //     newErrors["confirmPassword"] = false;
+  //   }
+
+  //   if (!signupData.mobile || !validMobile.test(signupData.mobile)) {
+  //     newErrors["mobile"] = true;
+  //   } else {
+  //     newErrors["mobile"] = false;
+  //   }
+  // };
+
+  // const signupFormData = () => {
+  //   if (signupData.password === signupData.confirmPassword) {
+  //     axios
+  //       .post(`${API}/signup`, {
+  //         signupData,
+  //       })
+  //       .then((res) => {
+  //         console.log(res);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   }
+  // };
+
+
+
+
+
+
+   {/* 
+        <TextField
+          // error={error.password ? true : false}
+          fullWidth
+          // type="password"
+          // label={error.password ? "Error" : "Password *"}
+          sx={{ mb: 2 }}
+          value={signupData.password}
+          onChange={(e) => {
+            setSignupData({ ...signupData, password: e.target.value });
+          }}
+          // helperText={
+          //   error.password &&
+          //   "Password should have 1.length 8 2.numbers 3.Atleast one Capital letter 4.a special character "
+          // }
+        />
+
+        <TextField
+          // error={error.confirmPassword ? true : false}
+          fullWidth
+          type="password"
+          // label={error.confirmPassword ? "Error" : "Re-enter Password *"}
+          sx={{ mb: 2 }}
+          value={signupData.confirmPassword}
+          onChange={(e) => {
+            setSignupData({
+              ...signupData,
+              confirmPassword: e.target.value,
+            });
+          }}
+          // helperText={error.confirmPassword && "password mismatch"}
+        />
+
+        <TextField
+          // error={error.mobile ? true : false}
+          fullWidth
+          type="number"
+          // label={error.mobile ? "Error" : "Mobile number *"}
+          sx={{ mb: 2 }}
+          value={signupData.mobile}
+          onChange={(e) => {
+            setSignupData({ ...signupData, mobile: e.target.value });
+          }}
+          // helperText={error.mobile && "Mobile number contains 10 digits"}
+        /> */}
+
+
+
+
+
+        // import {
+//   validFullName,
+//   validEmail,
+//   validPassword,
+//   validMobile,
+// } from "./regex/Validation";

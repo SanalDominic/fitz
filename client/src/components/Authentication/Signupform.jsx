@@ -5,99 +5,17 @@ import TextField from "@mui/material/TextField";
 
 import { CarouselButton, ModalButton } from "../Theme/Custom";
 
-// import { API } from "../../API";
-// import axios from "axios";
-import { useState } from "react";
-import {
-  validFullName,
-  validEmail,
-  validPassword,
-  validMobile,
-} from "./regex/Validation";
+import { API } from "../../API";
+import axios from "axios";
+
+import Useform from "./Useform";
 
 const Signupform = ({ setToggleAuth, passwordSet }) => {
-  const [signupData, setSignupData] = useState({
-    fullName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    mobile: "",
-  });
-
-  //error validation
-  const [error, setError] = useState({
-    fullName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    mobile: "",
-  });
-
-  const toggle = () => {
+  const toggle = (e) => {
     setToggleAuth(false);
   };
-
-  const Validate = () => {
-    const newErrors = {};
-
-    if (!signupData.fullName || !validFullName.test(signupData.fullName)) {
-      newErrors["fullName"] = true;
-    } else {
-      newErrors["fullName"] = false;
-    }
-
-    if (!signupData.email || !validEmail.test(signupData.email)) {
-      newErrors["email"] = true;
-    } else {
-      newErrors["email"] = false;
-    }
-
-    if (!signupData.password || !validPassword.test(signupData.password)) {
-      newErrors["password"] = true;
-    } else {
-      newErrors["password"] = false;
-    }
-
-    if (
-      !(signupData.password === signupData.confirmPassword) ||
-      !signupData.confirmPassword
-    ) {
-      newErrors["confirmPassword"] = true;
-    } else {
-      newErrors["confirmPassword"] = false;
-    }
-
-    if (!signupData.mobile || !validMobile.test(signupData.mobile)) {
-      newErrors["mobile"] = true;
-    } else {
-      newErrors["mobile"] = false;
-    }
-
-    setError(newErrors);
-
-    // const isNullish = Object.values(error).every((value) => {
-    //   if (value === null) {
-    //     return true;
-    //   }
-    //   return false;
-    // });
-    // console.log(isNullish);
-  };
-
-  // const signupFormData = () => {
-  //   if (signupData.password === signupData.confirmPassword) {
-  //     axios
-  //       .post(`${API}/signup`, {
-  //         signupData,
-  //       })
-  //       .then((res) => {
-  //         console.log(res);
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   }
-  // };
+  const { handleChange, hadleSubmit, signupData, errors, formSubmitted } =
+    Useform();
 
   return (
     <>
@@ -112,84 +30,47 @@ const Signupform = ({ setToggleAuth, passwordSet }) => {
       <Box>
         <TextField
           autoFocus
-          error={error.fullName ? true : false}
+          error={errors.fullName ? true : false}
           fullWidth
           name="fullName"
           type="text"
-          label={error.fullName ? "Error" : "Full name *"}
+          label={errors.fullName ? "Error" : "Full name *"}
           sx={{ mb: 2 }}
           value={signupData.fullName}
-          onChange={(e) =>
-            setSignupData({ ...signupData, fullName: e.target.value })
-          }
-          helperText={error.fullName && "Please enter a valid name"}
+          onChange={handleChange}
+          helperText={errors.fullName && `${errors.fullName}`}
         />
 
         <TextField
-          error={error.email ? true : false}
+          error={errors.email ? true : false}
           fullWidth
           name="email"
           type="email"
-          label={error.email ? "Error" : "Email Address *"}
+          label={errors.email ? "Error" : "Email Address *"}
           sx={{ mb: 2 }}
           value={signupData.email}
-          onChange={(e) =>
-            setSignupData({ ...signupData, email: e.target.value })
-          }
-          helperText={error.email && "Please enter a valid email"}
+          onChange={handleChange}
+          helperText={errors.email && `${errors.email}`}
         />
-
         <TextField
-          error={error.password ? true : false}
+          error={errors.password ? true : false}
           fullWidth
           type="password"
-          label={error.password ? "Error" : "Password *"}
+          label={errors.password ? "Error" : "Password *"}
           sx={{ mb: 2 }}
+          name="password"
           value={signupData.password}
-          onChange={(e) => {
-            setSignupData({ ...signupData, password: e.target.value });
-          }}
-          helperText={
-            error.password &&
-            "Password should have 1.length 8 2.numbers 3.Atleast one Capital letter 4.a special character "
-          }
+          onChange={handleChange}
+          helperText={errors.email && `${errors.password}`}
         />
 
-        <TextField
-          error={error.confirmPassword ? true : false}
-          fullWidth
-          type="password"
-          label={error.confirmPassword ? "Error" : "Re-enter Password *"}
-          sx={{ mb: 2 }}
-          value={signupData.confirmPassword}
-          onChange={(e) => {
-            setSignupData({
-              ...signupData,
-              confirmPassword: e.target.value,
-            });
-          }}
-          helperText={error.confirmPassword && "password mismatch"}
-        />
-
-        <TextField
-          error={error.mobile ? true : false}
-          fullWidth
-          type="number"
-          label={error.mobile ? "Error" : "Mobile number *"}
-          sx={{ mb: 2 }}
-          value={signupData.mobile}
-          onChange={(e) => {
-            setSignupData({ ...signupData, mobile: e.target.value });
-          }}
-          helperText={error.mobile && "Mobile number contains 10 digits"}
-        />
         <Box
           sx={{
             display: "flex",
             flexFlow: "column",
           }}
         >
-          <ModalButton onClick={Validate} sx={{ mb: 2 }}>
+          <ModalButton onClick={hadleSubmit} sx={{ mb: 2 }}>
             Register
           </ModalButton>
           <CarouselButton onClick={toggle}>Login</CarouselButton>

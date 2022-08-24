@@ -32,7 +32,7 @@ const style = {
 };
 
 const AccountMenu = () => {
-  const [toggleAuth, setToggleAuth] = useState(false);
+  const [toggleAuth, setToggleAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
