@@ -30,7 +30,7 @@ const Useform = () => {
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && datacorrect) {
-      console.log("Fgfgf");
+      setFormSubmitted(true);
     }
   }, [errors]);
 

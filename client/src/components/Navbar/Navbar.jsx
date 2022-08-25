@@ -15,6 +15,7 @@ import AccountMenu from "./AccountMenu";
 
 const Navbar = () => {
   const [isDrawerOpen, setDrawOpen] = useState(false);
+
   return (
     <>
       <Box

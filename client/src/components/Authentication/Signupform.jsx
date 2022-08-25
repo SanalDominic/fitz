@@ -17,6 +17,24 @@ const Signupform = ({ setToggleAuth, passwordSet }) => {
   const { handleChange, hadleSubmit, signupData, errors, formSubmitted } =
     Useform();
 
+  if (formSubmitted) {
+    axios
+      .post(`${API}/sendOtp`, {
+        data: {
+          email: signupData.email,
+          mobile: signupData.mobile,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        const { data } = res;
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
+
   return (
     <>
       <Typography
@@ -34,7 +52,7 @@ const Signupform = ({ setToggleAuth, passwordSet }) => {
           fullWidth
           name="fullName"
           type="text"
-          label={errors.fullName ? "Error" : "Full name *"}
+          label="Full name *"
           sx={{ mb: 2 }}
           value={signupData.fullName}
           onChange={handleChange}
@@ -46,7 +64,7 @@ const Signupform = ({ setToggleAuth, passwordSet }) => {
           fullWidth
           name="email"
           type="email"
-          label={errors.email ? "Error" : "Email Address *"}
+          label="Email Address *"
           sx={{ mb: 2 }}
           value={signupData.email}
           onChange={handleChange}
@@ -56,12 +74,34 @@ const Signupform = ({ setToggleAuth, passwordSet }) => {
           error={errors.password ? true : false}
           fullWidth
           type="password"
-          label={errors.password ? "Error" : "Password *"}
+          label="Password *"
           sx={{ mb: 2 }}
           name="password"
           value={signupData.password}
           onChange={handleChange}
-          helperText={errors.email && `${errors.password}`}
+          helperText={errors.password && `${errors.password}`}
+        />
+        <TextField
+          error={errors.confirmPassword ? true : false}
+          fullWidth
+          type="password"
+          label="re enter Password *"
+          sx={{ mb: 2 }}
+          name="confirmPassword"
+          value={signupData.confirmPassword}
+          onChange={handleChange}
+          helperText={errors.confirmPassword && `${errors.confirmPassword}`}
+        />
+        <TextField
+          error={errors.mobile ? true : false}
+          fullWidth
+          type="text"
+          label="Enter mobile number *"
+          sx={{ mb: 2 }}
+          name="mobile"
+          value={signupData.mobile}
+          onChange={handleChange}
+          helperText={errors.mobile && `${errors.mobile}`}
         />
 
         <Box

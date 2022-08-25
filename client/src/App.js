@@ -7,16 +7,20 @@ import Navbar from "./components/Navbar/Navbar";
 
 import Test from "./pages/Test";
 
+
+
 function App() {
   return (
     <>
       <Box>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Landingpage />}></Route>
-          <Route path="/products" element={<Products />}></Route>
-          <Route path="/test" element={<Test />}></Route>
-        </Routes>
+   
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Landingpage />}></Route>
+            <Route path="/products" element={<Products />}></Route>
+            <Route path="/test" element={<Test />}></Route>
+          </Routes>
+    
       </Box>
     </>
   );
