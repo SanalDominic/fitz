@@ -10,26 +10,29 @@ module.exports = {
   sendOtp: async (req, res) => {
     console.log(req.body);
     const { email, mobile } = req.body.data;
-    console.log(email);
+
     try {
       const isUserExist = await Customer.findOne({
         $or: [{ email: email }, { mobile: mobile }],
       });
 
       if (!isUserExist) {
+        // client.verify
+        //   .services(process.env.SERVICE_SID)
+        //   .verifications.create({
+        //     to: `+91${mobile}`,
+        //     channel: "sms",
+        //   })
+        //   .then((response) => {
+        //     res.json({ otp: true });
+        //   })
+        //   .catch((error) => {
+        //     console.log(error.message);
+        //   });
+        res.json({ otp: true });
+      } else {
+        res.json("userExist");
       }
-      client.verify
-        .services(process.env.SERVICE_SID)
-        .verifications.create({
-          to: `+91${mobile}`,
-          channel: "sms",
-        })
-        .then((response) => {
-          res.json({ otp: true });
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
     } catch (error) {
       console.log(error.message);
     }

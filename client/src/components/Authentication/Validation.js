@@ -38,4 +38,4 @@ const Validation = (signupData) => {
   return errors;
 };
 
-export default Validation;
+export {Validation} ;

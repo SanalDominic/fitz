@@ -1,21 +1,43 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
 import { CarouselButton, ModalButton } from "../Theme/Custom";
 
-import { API } from "../../API";
-import axios from "axios";
+import { Validation } from "./Validation";
+import { signupContext } from "./Signup";
 
-import Useform from "./Useform";
+import axios from "axios";
+import { API } from "../../API";
 
 const Signupform = ({ setToggleAuth, passwordSet }) => {
-  const toggle = (e) => {
-    setToggleAuth(false);
+  const [datacorrect, setdata] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const [errors, setErrors] = useState({});
+
+  const { signupData, setSignupData } = useContext(signupContext);
+
+  const handleChange = (e) => {
+    setSignupData({
+      ...signupData,
+      [e.target.name]: e.target.value,
+    });
   };
-  const { handleChange, hadleSubmit, signupData, errors, formSubmitted } =
-    Useform();
+
+  const hadleSubmit = (e) => {
+    e.preventDefault();
+    setErrors(Validation(signupData));
+    setdata(true);
+  };
+
+  useEffect(() => {
+    if (Object.keys(errors).length === 0 && datacorrect) {
+      setFormSubmitted(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [errors]);
 
   if (formSubmitted) {
     axios
@@ -26,13 +48,16 @@ const Signupform = ({ setToggleAuth, passwordSet }) => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         const { data } = res;
-        console.log(data);
+        console.log(res);
+        if (data.otp) {
+          passwordSet();
+        }
       })
       .catch((error) => {
         console.log(error.message);
       });
+    passwordSet();
   }
 
   return (
@@ -71,6 +96,17 @@ const Signupform = ({ setToggleAuth, passwordSet }) => {
           helperText={errors.email && `${errors.email}`}
         />
         <TextField
+          error={errors.mobile ? true : false}
+          fullWidth
+          type="text"
+          label="Mobile number *"
+          sx={{ mb: 2 }}
+          name="mobile"
+          value={signupData.mobile}
+          onChange={handleChange}
+          helperText={errors.mobile && `${errors.mobile}`}
+        />
+        <TextField
           error={errors.password ? true : false}
           fullWidth
           type="password"
@@ -85,23 +121,12 @@ const Signupform = ({ setToggleAuth, passwordSet }) => {
           error={errors.confirmPassword ? true : false}
           fullWidth
           type="password"
-          label="re enter Password *"
+          label="Confirm Password *"
           sx={{ mb: 2 }}
           name="confirmPassword"
           value={signupData.confirmPassword}
           onChange={handleChange}
           helperText={errors.confirmPassword && `${errors.confirmPassword}`}
-        />
-        <TextField
-          error={errors.mobile ? true : false}
-          fullWidth
-          type="text"
-          label="Enter mobile number *"
-          sx={{ mb: 2 }}
-          name="mobile"
-          value={signupData.mobile}
-          onChange={handleChange}
-          helperText={errors.mobile && `${errors.mobile}`}
         />
 
         <Box
@@ -113,7 +138,9 @@ const Signupform = ({ setToggleAuth, passwordSet }) => {
           <ModalButton onClick={hadleSubmit} sx={{ mb: 2 }}>
             Register
           </ModalButton>
-          <CarouselButton onClick={toggle}>Login</CarouselButton>
+          <CarouselButton onClick={() => setToggleAuth(false)}>
+            Login
+          </CarouselButton>
         </Box>
       </Box>
     </>

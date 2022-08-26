@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import Signupform from "./Signupform";
-import Getotp from "./Getotp";
 import Confirmotp from "./Confirmotp";
+
+export const signupContext = createContext();
 
 const Signup = ({ setToggleAuth }) => {
   const [register, setRegister] = useState(0);
+
+  const [signupData, setSignupData] = useState({
+    fullName: "",
+    email: "",
+    mobile: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   const passwordSet = () => {
     setRegister(1 + register);
   };
@@ -17,14 +27,6 @@ const Signup = ({ setToggleAuth }) => {
     );
   };
 
-  const getOtp = () => {
-    return (
-      <>
-        <Getotp passwordSet={passwordSet} />;
-      </>
-    );
-  };
-
   const verifyOtp = () => {
     return (
       <>
@@ -33,15 +35,22 @@ const Signup = ({ setToggleAuth }) => {
     );
   };
 
+  const stepper = (param) => {
+    switch (param) {
+      case 0:
+        return signupForm();
+      case 1:
+        return verifyOtp();
+      default:
+        return setRegister(0);
+    }
+  };
+
   return (
     <>
-      {register === 0
-        ? signupForm()
-        : register === 1
-        ? getOtp()
-        : register === 2
-        ? verifyOtp()
-        : setRegister(0)}
+      <signupContext.Provider value={{ signupData, setSignupData }}>
+        {stepper(register)}
+      </signupContext.Provider>
     </>
   );
 };
