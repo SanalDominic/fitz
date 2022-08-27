@@ -2,12 +2,17 @@ const Validation = (signupData) => {
   let errors = {};
   if (!signupData.fullName) {
     errors.fullName = "Name is required.";
+  } else if (
+    !/(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/.test(
+      signupData.fullName
+    )
+  ) {
+    errors.fullName = "Name is not valid";
   }
-
   if (!signupData.email) {
     errors.email = "Email is required.";
   } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(signupData.email)) {
-    errors.email = "email is invalid";
+    errors.email = "Email is invalid";
   }
 
   if (!signupData.password) {
@@ -17,25 +22,25 @@ const Validation = (signupData) => {
       signupData.password
     )
   ) {
-    errors.password = "not a valid password";
+    errors.password = "Not a valid password";
   }
   if (!signupData.confirmPassword) {
-    errors.confirmPassword = ` password is required`;
+    errors.confirmPassword = ` Password is required`;
   } else if (signupData.confirmPassword !== signupData.password) {
-    errors.confirmPassword = ` password did'nt match`;
+    errors.confirmPassword = ` Password did'nt match`;
   }
 
   if (!signupData.mobile) {
-    errors.mobile = "mobile is required";
+    errors.mobile = "Mobile is required";
   } else if (
     !/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/.test(signupData.mobile)
   ) {
     errors.mobile = `"Only numbers allowed"`;
   } else if (!(signupData.mobile.length === 10)) {
-    errors.mobile = "number should be 10 digits";
+    errors.mobile = "Number should be 10 digits";
   }
 
   return errors;
 };
 
-export {Validation} ;
+export { Validation };

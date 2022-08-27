@@ -3,17 +3,15 @@ const client = require("twilio")(
   process.env.AUTH_TOKEN
 );
 
-const mongoose = require("mongoose");
 const Customer = require("../../Dbmodels/CustomerModel");
 
 module.exports = {
   sendOtp: async (req, res) => {
-    console.log(req.body);
     const { email, mobile } = req.body.data;
-
+    console.log(email, mobile);
     try {
       const isUserExist = await Customer.findOne({
-        $or: [{ email: email }, { mobile: mobile }],
+        $and: [{ email: email }, { mobile: mobile }],
       });
 
       if (!isUserExist) {
@@ -24,17 +22,21 @@ module.exports = {
         //     channel: "sms",
         //   })
         //   .then((response) => {
-        //     res.json({ otp: true });
+        //     console.log(response);
+        //     res.status(200).json({ otp: true });
         //   })
         //   .catch((error) => {
         //     console.log(error.message);
         //   });
-        res.json({ otp: true });
+        res.status(200).json({ otp: true });
       } else {
-        res.json("userExist");
+        res.status(409).json({ error: true });
       }
     } catch (error) {
       console.log(error.message);
     }
+  },
+  verifyOtp: (req, res) => {
+    console.log("verify otp", req.body);
   },
 };

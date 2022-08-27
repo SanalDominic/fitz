@@ -1,58 +1,27 @@
-import React, { useState, createContext } from "react";
+import React, { useState } from "react";
+
 import Signupform from "./Signupform";
-import Confirmotp from "./Confirmotp";
+import Signupotp from "./Signupotp";
 
-export const signupContext = createContext();
+const Signup = () => {
+  const [stepper, setStepper] = useState(0);
 
-const Signup = ({ setToggleAuth }) => {
-  const [register, setRegister] = useState(0);
-
-  const [signupData, setSignupData] = useState({
-    fullName: "",
-    email: "",
-    mobile: "",
-    password: "",
-    confirmPassword: "",
-  });
-
-  const passwordSet = () => {
-    setRegister(1 + register);
+  const stepperInc = () => {
+    setStepper(1 + stepper);
   };
 
-  const signupForm = () => {
-    return (
-      <>
-        <Signupform setToggleAuth={setToggleAuth} passwordSet={passwordSet} />
-      </>
-    );
-  };
-
-  const verifyOtp = () => {
-    return (
-      <>
-        <Confirmotp passwordSet={passwordSet} />;
-      </>
-    );
-  };
-
-  const stepper = (param) => {
+  const toggleStepper = (param) => {
     switch (param) {
       case 0:
-        return signupForm();
+        return <Signupform stepperInc={stepperInc} />;
       case 1:
-        return verifyOtp();
+        return <Signupotp stepperInc={stepperInc} />;
       default:
-        return setRegister(0);
+        return setStepper(0);
     }
   };
 
-  return (
-    <>
-      <signupContext.Provider value={{ signupData, setSignupData }}>
-        {stepper(register)}
-      </signupContext.Provider>
-    </>
-  );
+  return <>{toggleStepper(stepper)}</>;
 };
 
 export default Signup;

@@ -1,64 +1,33 @@
 import React, { useState } from "react";
 
-//import FormHelperText from "@mui/material/FormHelperText";
-
 import Loginform from "./Loginform";
 import Getotp from "./Getotp";
 import Confirmotp from "./Confirmotp";
 import Changepassword from "./Changepassword";
 
-const Login = ({ setToggleAuth }) => {
-  const [changePassword, setChangePassword] = useState(0);
+const Login = () => {
+  const [stepper, setStepper] = useState(0);
 
-  const passwordSet = () => {
-    setChangePassword(1 + changePassword);
+  const stepperInc = () => {
+    setStepper(1 + stepper);
   };
 
-  const loginForm = () => {
-    return (
-      <>
-        <Loginform setToggleAuth={setToggleAuth} passwordSet={passwordSet} />
-      </>
-    );
+  const toggleStepper = (param) => {
+    switch (param) {
+      case 0:
+        return <Loginform stepperInc={stepperInc} />;
+      case 1:
+        return <Getotp stepperInc={stepperInc} />;
+      case 2:
+        return <Confirmotp stepperInc={stepperInc} />;
+      case 3:
+        return <Changepassword stepperInc={stepperInc} />;
+      default:
+        return setStepper(0);
+    }
   };
 
-  const getOtp = () => {
-    return (
-      <>
-        <Getotp passwordSet={passwordSet} />
-      </>
-    );
-  };
-
-  const verifyOtp = () => {
-    return (
-      <>
-        <Confirmotp passwordSet={passwordSet} />
-      </>
-    );
-  };
-
-  const newPassword = () => {
-    return (
-      <>
-        <Changepassword passwordSet={passwordSet} />
-      </>
-    );
-  };
-
-  return (
-    <>
-      {changePassword === 0
-        ? loginForm()
-        : changePassword === 1
-        ? getOtp()
-        : changePassword === 2
-        ? verifyOtp()
-        : changePassword === 3
-        ? newPassword()
-        : setChangePassword(0)}
-    </>
-  );
+  return <>{toggleStepper(stepper)}</>;
 };
 
 export default Login;

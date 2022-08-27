@@ -4,10 +4,7 @@ import TextField from "@mui/material/TextField";
 
 import { CarouselButton } from "../Theme/Custom";
 
-const Confirmotp = ({ passwordSet }) => {
-  const verifyOtp = () => {
-    passwordSet();
-  };
+const Confirmotp = ({ stepperInc }) => {
   return (
     <>
       <Typography
@@ -19,7 +16,7 @@ const Confirmotp = ({ passwordSet }) => {
         Verify Otp
       </Typography>
       <TextField fullWidth type="number" label="Enter otp *" sx={{ mb: 2 }} />
-      <CarouselButton fullWidth onClick={verifyOtp}>
+      <CarouselButton fullWidth onClick={stepperInc}>
         Verify
       </CarouselButton>
     </>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -30,13 +30,21 @@ const style = {
   px: 2,
   py: 4,
 };
+export const authContext = createContext();
 
 const AccountMenu = () => {
   const [toggleAuth, setToggleAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
   const [modalopen, setModalOpen] = React.useState(false);
+
+  const [signupData, setSignupData] = useState({
+    fullName: "",
+    email: "",
+    mobile: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -146,11 +154,11 @@ const AccountMenu = () => {
                   ></CloseOutlinedIcon>
                 </Box>
                 <Box sx={{ px: 4, pt: 0, pb: 4 }}>
-                  {!toggleAuth ? (
-                    <Login setToggleAuth={setToggleAuth} />
-                  ) : (
-                    <Signup setToggleAuth={setToggleAuth} />
-                  )}
+                  <authContext.Provider
+                    value={{ setToggleAuth, signupData, setSignupData }}
+                  >
+                    {toggleAuth ? <Signup /> : <Login />}
+                  </authContext.Provider>
                 </Box>
               </Box>
             </Box>

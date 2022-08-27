@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 
 import { CarouselButton } from "../Theme/Custom";
 
-const Changepassword = ({ passwordSet }) => {
+const Changepassword = ({ stepperInc }) => {
   return (
     <>
       <Typography
@@ -27,7 +27,7 @@ const Changepassword = ({ passwordSet }) => {
         label="Re-enter Password *"
         sx={{ mb: 2 }}
       />
-      <CarouselButton fullWidth onClick={passwordSet}>
+      <CarouselButton fullWidth onClick={stepperInc}>
         Submit
       </CarouselButton>
     </>

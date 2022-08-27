@@ -2,22 +2,23 @@ import React, { useState, useEffect, useContext } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import Alert from "@mui/material/Alert";
 
 import { CarouselButton, ModalButton } from "../Theme/Custom";
 
 import { Validation } from "./Validation";
-import { signupContext } from "./Signup";
+import { authContext } from "../Navbar/AccountMenu";
 
 import axios from "axios";
 import { API } from "../../API";
 
-const Signupform = ({ setToggleAuth, passwordSet }) => {
+const Signupform = ({ stepperInc }) => {
   const [datacorrect, setdata] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
-
   const [errors, setErrors] = useState({});
+  const [user, setUser] = useState(false);
 
-  const { signupData, setSignupData } = useContext(signupContext);
+  const { setToggleAuth, signupData, setSignupData } = useContext(authContext);
 
   const handleChange = (e) => {
     setSignupData({
@@ -48,16 +49,16 @@ const Signupform = ({ setToggleAuth, passwordSet }) => {
         },
       })
       .then((res) => {
-        const { data } = res;
-        console.log(res);
-        if (data.otp) {
-          passwordSet();
+        if (res.status === 200) {
+          stepperInc();
         }
       })
       .catch((error) => {
+        if (error.response.status === 409) {
+          setUser(true);
+        }
         console.log(error.message);
       });
-    passwordSet();
   }
 
   return (
@@ -135,7 +136,12 @@ const Signupform = ({ setToggleAuth, passwordSet }) => {
             flexFlow: "column",
           }}
         >
-          <ModalButton onClick={hadleSubmit} sx={{ mb: 2 }}>
+          {user && (
+            <Alert severity="error" color="error">
+              User already exist ! Go to Login
+            </Alert>
+          )}
+          <ModalButton onClick={hadleSubmit} sx={{ mt: 2, mb: 2 }}>
             Register
           </ModalButton>
           <CarouselButton onClick={() => setToggleAuth(false)}>

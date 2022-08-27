@@ -2,13 +2,12 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-
+import { useContext } from "react";
 import { CarouselButton, ModalButton } from "../Theme/Custom";
+import { authContext } from "../Navbar/AccountMenu";
 
-const Loginform = ({ setToggleAuth, passwordSet }) => {
-  const toggle = () => {
-    setToggleAuth(true);
-  };
+const Loginform = ({ stepperInc }) => {
+  const { setToggleAuth } = useContext(authContext);
 
   return (
     <>
@@ -27,7 +26,13 @@ const Loginform = ({ setToggleAuth, passwordSet }) => {
         label="Email Address *"
         sx={{ mb: 2 }}
       />
-      <TextField name="" fullWidth type="password" label="Password *" sx={{ mb: 2 }} />
+      <TextField
+        name=""
+        fullWidth
+        type="password"
+        label="Password *"
+        sx={{ mb: 2 }}
+      />
       <Box display="flex" justifyContent="end">
         <Typography
           color="GrayText"
@@ -39,7 +44,7 @@ const Loginform = ({ setToggleAuth, passwordSet }) => {
               cursor: "pointer",
             },
           }}
-          onClick={passwordSet}
+          onClick={stepperInc}
         >
           Forget your password ?
         </Typography>
@@ -52,7 +57,9 @@ const Loginform = ({ setToggleAuth, passwordSet }) => {
         }}
       >
         <ModalButton sx={{ mb: 2 }}>Login</ModalButton>
-        <CarouselButton onClick={toggle}>Register</CarouselButton>
+        <CarouselButton onClick={() => setToggleAuth(true)}>
+          Register
+        </CarouselButton>
       </Box>
     </>
   );

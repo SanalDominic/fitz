@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 
 import { CarouselButton } from "../Theme/Custom";
 
-const Getotp = ({ passwordSet }) => {
+const Getotp = ({ stepperInc }) => {
   
   return (
     <>
@@ -22,7 +22,7 @@ const Getotp = ({ passwordSet }) => {
         label="Enter Mobile number *"
         sx={{ mb: 2 }}
       />
-      <CarouselButton fullWidth onClick={passwordSet}>
+      <CarouselButton fullWidth onClick={stepperInc}>
         Send Otp
       </CarouselButton>
     </>
