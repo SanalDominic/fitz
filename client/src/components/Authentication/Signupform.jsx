@@ -54,10 +54,12 @@ const Signupform = ({ stepperInc }) => {
         }
       })
       .catch((error) => {
+        
         if (error.response.status === 409) {
           setUser(true);
+        } else {
+          console.log(error.message);
         }
-        console.log(error.message);
       });
   }
 

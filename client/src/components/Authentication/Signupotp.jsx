@@ -9,7 +9,7 @@ import { API } from "../../API";
 import axios from "axios";
 
 const Signupotp = () => {
-  const { signupData } = useContext(authContext);
+  const { setToggleAuth, signupData } = useContext(authContext);
   const [error, setError] = useState({});
   const [otp, setOtp] = useState("");
   const [data, setData] = useState(false);
@@ -36,10 +36,18 @@ const Signupotp = () => {
         otp,
       })
       .then((res) => {
-        console.log(res);
+        console.log("success", res);
+        if (res.status === 200 && res.data.verified) {
+          setToggleAuth(false);
+        }
       })
       .catch((error) => {
-        console.log("er", error.message);
+        const { data } = error.response;
+        if (data.verified && error.response.status === 409) {
+          console.log("verification failed");
+        } else {
+          console.log(error.message);
+        }
       });
   };
 
@@ -47,6 +55,7 @@ const Signupotp = () => {
     if (Object.keys(error).length === 0 && data) {
       verifyOtp();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error]);
 
   return (
