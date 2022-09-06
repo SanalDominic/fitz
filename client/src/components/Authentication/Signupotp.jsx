@@ -70,6 +70,7 @@ const Signupotp = () => {
       </Typography>
       <TextField
         fullWidth
+        error={error.otp ? true : false}
         type="number"
         name="otp"
         value={otp}

@@ -6,14 +6,14 @@ import Alert from "@mui/material/Alert";
 
 import { CarouselButton, ModalButton } from "../Theme/Custom";
 
-import { Validation } from "./Validation";
+import { signupValidation } from "./Validation";
 import { authContext } from "../Navbar/AccountMenu";
 
 import axios from "axios";
 import { API } from "../../API";
 
 const Signupform = ({ stepperInc }) => {
-  const [datacorrect, setdata] = useState(false);
+  const [data, setdata] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
   const [user, setUser] = useState(false);
@@ -29,12 +29,12 @@ const Signupform = ({ stepperInc }) => {
 
   const hadleSubmit = (e) => {
     e.preventDefault();
-    setErrors(Validation(signupData));
+    setErrors(signupValidation(signupData));  
     setdata(true);
   };
 
   useEffect(() => {
-    if (Object.keys(errors).length === 0 && datacorrect) {
+    if (Object.keys(errors).length === 0 && data) {
       setFormSubmitted(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -54,7 +54,6 @@ const Signupform = ({ stepperInc }) => {
         }
       })
       .catch((error) => {
-        
         if (error.response.status === 409) {
           setUser(true);
         } else {

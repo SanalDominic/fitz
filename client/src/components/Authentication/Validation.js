@@ -1,4 +1,4 @@
-const Validation = (signupData) => {
+const signupValidation = (signupData) => {
   let errors = {};
   if (!signupData.fullName) {
     errors.fullName = "Name is required.";
@@ -24,6 +24,7 @@ const Validation = (signupData) => {
   ) {
     errors.password = "Not a valid password";
   }
+
   if (!signupData.confirmPassword) {
     errors.confirmPassword = ` Password is required`;
   } else if (signupData.confirmPassword !== signupData.password) {
@@ -43,4 +44,25 @@ const Validation = (signupData) => {
   return errors;
 };
 
-export { Validation };
+const loginValidation = (loginData) => {
+  const errors = {};
+  if (!loginData.email) {
+    errors.email = "Email is required.";
+  } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(loginData.email)) {
+    errors.email = "Email is invalid";
+  }
+
+  if (!loginData.password) {
+    errors.password = "Password is required";
+  } else if (
+    !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(
+      loginData.password
+    )
+  ) {
+    errors.password = "Not a valid password";
+  }
+
+  return errors;
+};
+
+export { signupValidation, loginValidation };

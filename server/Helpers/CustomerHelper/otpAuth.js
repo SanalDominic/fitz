@@ -37,9 +37,7 @@ module.exports = {
     }
   },
   verifyOtp: async (req, res) => {
-    console.log("verify otp", req.body);
     const { otp, confirmPassword, ...signupData } = req.body;
-    console.log(otp, signupData);
     try {
       // const isVerified = await client.verify
       //   .services(process.env.SERVICE_SID)
@@ -62,6 +60,17 @@ module.exports = {
       // } else {
       //   res.status(409).json({ verified: false });
       // }
+
+      signupData.password = await bcrypt.hash(signupData.password, 10);
+      const customerData = new Customer({ ...signupData });
+      customerData.save((err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(result);
+          res.status(200).json({ verified: true });
+        }
+      });
       res.status(200).json({ verified: true });
     } catch (error) {
       console.log(error.message);

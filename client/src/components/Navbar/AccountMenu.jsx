@@ -33,7 +33,7 @@ const style = {
 export const authContext = createContext();
 
 const AccountMenu = () => {
-  const [toggleAuth, setToggleAuth] = useState(true);
+  const [toggleAuth, setToggleAuth] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [modalopen, setModalOpen] = React.useState(false);
@@ -155,7 +155,7 @@ const AccountMenu = () => {
                 </Box>
                 <Box sx={{ px: 4, pt: 0, pb: 4 }}>
                   <authContext.Provider
-                    value={{ setToggleAuth, signupData, setSignupData }}
+                    value={{ setToggleAuth, signupData, setSignupData,setModalOpen }}
                   >
                     {toggleAuth ? <Signup /> : <Login />}
                   </authContext.Provider>

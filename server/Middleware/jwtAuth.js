@@ -1,6 +1,6 @@
 require("dotenv").config();
 
- function tokenAuth(req, res, next) {
+ function jwtAuth(req, res, next) {
   const { authorization } = req.headers;
   jwt.verify(
     authorization,
@@ -15,4 +15,4 @@ require("dotenv").config();
   );
 }
 
-module.exports = {tokenAuth}
+module.exports = {jwtAuth}
