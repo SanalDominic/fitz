@@ -9,11 +9,11 @@ const Featuredproducts = () => {
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#fff", px: { xs: 2, sm: 10 } }}>
       <Typography
-        variant="h3"
+        variant="h6"
         color="initial"
         textAlign="center"
         pb={4}
-        sx={{ fontSize: { xs: "2rem", sm: "3rem", md: "4rem" } }}
+        sx={{ fontSize: { xs: "2rem", sm: "3rem" } }}
       >
         Featured Products
       </Typography>

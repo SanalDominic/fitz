@@ -7,9 +7,9 @@ module.exports = {
     const isExist = await Customer.findOne({
       email: email,
     });
-    console.log(isExist);
+   
     if (!isExist) {
-      return res.status(409).json({ user: false });
+      return res.status(406).json({ user: false });
     }
 
     const isPassword = await bcrypt.compare(password, isExist.password);
@@ -40,17 +40,15 @@ module.exports = {
       }
     );
 
-    // Assigning refresh token in http-only cookie
+    // Assigning access token in http-only cookie
 
-    res.cookie("jwt", refreshToken, {
+    res.cookie("jwt", accessToken, {
       httpOnly: true,
       sameSite: "None",
       secure: true,
       maxAge: 24 * 60 * 60 * 1000,
     });
-    // return res.json({ accessToken });
-    console.log(accessToken, " ", refreshToken);
-
-    return res.status(200).json({ accessToken });
+   
+     return res.status(200).json({ msg:"SignedIn Successfully !" });
   },
 };

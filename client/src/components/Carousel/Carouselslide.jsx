@@ -37,7 +37,7 @@ const Carouselslide = () => {
         modules={[Autoplay, EffectFade, Pagination, Mousewheel, Keyboard]}
         className="mySwiper"
       >
-        <SwiperSlide style={{ display: "relative" }}>
+        {/* <SwiperSlide style={{ display: "relative" }}>
           <img
             src="https://cdn.shopify.com/s/files/1/0421/6153/7180/files/img-slider-home-mini.png?v=1605086177"
             alt="carouselimg"
@@ -66,7 +66,7 @@ const Carouselslide = () => {
             </Typography>
             <CarouselButton variant="outlined">Shop now</CarouselButton>
           </Box>
-        </SwiperSlide>
+        </SwiperSlide>  
         <SwiperSlide>
           <img
             src="https://cdn.shopify.com/s/files/1/0421/6153/7180/files/img-slider-home-mini-2.png?v=1605086177"
@@ -96,13 +96,13 @@ const Carouselslide = () => {
             </Typography>
             <CarouselButton variant="outlined">Shop now</CarouselButton>
           </Box>
-        </SwiperSlide>
+        </SwiperSlide> */}
         <SwiperSlide>
           <img
             src="https://cdn.shopify.com/s/files/1/0421/6153/7180/files/img-slider-home-mini-3.png?v=1605086177"
             alt="carouselimg"
           />
-          <Box sx={{ position: "absolute" }}>
+          <Box sx={{ position: "absolute",right:'25%' }}>
             <Typography
               className="carouselheading"
               variant="h2"
@@ -118,11 +118,11 @@ const Carouselslide = () => {
               className="carouseltext"
               sx={{
                 m: 2,
-                color: "GrayText",
+                color:'GrayText',
                 fontSize: "1.5rem",
               }}
             >
-              Discover now latesr Collection
+              Discover now latest Collection
             </Typography>
             <CarouselButton variant="outlined">Shop now</CarouselButton>
           </Box>

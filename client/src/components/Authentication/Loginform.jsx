@@ -2,13 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { CarouselButton, ModalButton } from "../Theme/Custom";
+import { ModalButton } from "../Theme/Custom";
 import { authContext } from "../Navbar/AccountMenu";
 
 import axios from "axios";
 import { API } from "../../API";
 import { loginValidation } from "./Validation";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Loginform = ({ stepperInc }) => {
   const navigate = useNavigate();
@@ -20,7 +21,6 @@ const Loginform = ({ stepperInc }) => {
     password: "",
   });
   const [errors, setErrors] = useState({});
-  const [login, setLogin] = useState(false);
 
   const handleChange = (e) => {
     setLoginData({
@@ -42,14 +42,16 @@ const Loginform = ({ stepperInc }) => {
           ...loginData,
         })
         .then((response) => {
-          if (response.status === 200 && response.data.user) {
+          console.log(response);
+          if (response.status === 200) {
             setModalOpen(false);
+            toast.success("SignedIn Successfully !");
             navigate("/");
           }
         })
         .catch((error) => {
           if (error.response.status === 406) {
-            setLogin(true);
+            toast.error("Invalid Credentials ! Try again");
             setLoginData({ email: "", password: "" });
           } else {
             console.log(error.message);
@@ -61,16 +63,8 @@ const Loginform = ({ stepperInc }) => {
 
   return (
     <>
-      <Typography
-        variant="h4"
-        textAlign="center"
-        sx={{ mb: 3 }}
-        color="initial"
-      >
+      <Typography variant="h4" sx={{ mb: 4 }} color="initial">
         Login
-      </Typography>
-      <Typography textAlign="center" variant="subtitle1" color="red" mb={2}>
-        {login && "Invalid Credentials ! Try again"}
       </Typography>
       <TextField
         autoFocus
@@ -89,17 +83,17 @@ const Loginform = ({ stepperInc }) => {
         fullWidth
         type="password"
         label="Password *"
-        sx={{ mb: 2 }}
+        sx={{ mb: 1 }}
         name="password"
         value={loginData.password}
         onChange={handleChange}
         helperText={errors.password && `${errors.password}`}
       />
-      <Box display="flex" justifyContent="end">
+      <Box display="flex">
         <Typography
           color="GrayText"
           sx={{
-            mb: 2,
+            mb: 5,
             width: "fit-content",
             "&:hover": {
               color: "#000",
@@ -118,12 +112,18 @@ const Loginform = ({ stepperInc }) => {
           flexFlow: "column",
         }}
       >
-        <ModalButton sx={{ mb: 2 }} onClick={handleSubmit}>
+        <ModalButton sx={{ mb: 3 }} onClick={handleSubmit}>
           Login
         </ModalButton>
-        <CarouselButton onClick={() => setToggleAuth(true)}>
-          Register
-        </CarouselButton>
+        <Typography variant="subtitle1" color="initial">
+          <span style={{ color: "GrayText" }}>Don't have an account ?</span>{" "}
+          <span
+            style={{ cursor: "pointer" }}
+            onClick={() => setToggleAuth(true)}
+          >
+            Signup
+          </span>
+        </Typography>
       </Box>
     </>
   );

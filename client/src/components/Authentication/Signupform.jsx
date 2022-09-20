@@ -2,10 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Alert from "@mui/material/Alert";
 
-import { CarouselButton, ModalButton } from "../Theme/Custom";
-
+import { ModalButton } from "../Theme/Custom";
 import { signupValidation } from "./Validation";
 import { authContext } from "../Navbar/AccountMenu";
 
@@ -16,8 +14,6 @@ const Signupform = ({ stepperInc }) => {
   const [data, setdata] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
-  const [user, setUser] = useState(false);
-
   const { setToggleAuth, signupData, setSignupData } = useContext(authContext);
 
   const handleChange = (e) => {
@@ -29,7 +25,7 @@ const Signupform = ({ stepperInc }) => {
 
   const hadleSubmit = (e) => {
     e.preventDefault();
-    setErrors(signupValidation(signupData));  
+    setErrors(signupValidation(signupData));
     setdata(true);
   };
 
@@ -55,7 +51,8 @@ const Signupform = ({ stepperInc }) => {
       })
       .catch((error) => {
         if (error.response.status === 409) {
-          setUser(true);
+          setFormSubmitted(false);
+          setToggleAuth(false);
         } else {
           console.log(error.message);
         }
@@ -64,12 +61,7 @@ const Signupform = ({ stepperInc }) => {
 
   return (
     <>
-      <Typography
-        variant="h4"
-        textAlign="center"
-        sx={{ mb: 3 }}
-        color="initial"
-      >
+      <Typography variant="h4" sx={{ mb: 3 }} color="initial">
         Register
       </Typography>
       <Box>
@@ -137,17 +129,18 @@ const Signupform = ({ stepperInc }) => {
             flexFlow: "column",
           }}
         >
-          {user && (
-            <Alert severity="error" color="error">
-              User already exist ! Go to Login
-            </Alert>
-          )}
-          <ModalButton onClick={hadleSubmit} sx={{ mt: 2, mb: 2 }}>
+          <ModalButton onClick={hadleSubmit} sx={{ mt: 2, mb: 3 }}>
             Register
           </ModalButton>
-          <CarouselButton onClick={() => setToggleAuth(false)}>
-            Login
-          </CarouselButton>
+          <Typography variant="subtitle1" color="initial">
+            <span style={{ color: "GrayText" }}>Already have an account ?</span>{" "}
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={() => setToggleAuth(false)}
+            >
+              Login
+            </span>
+          </Typography>
         </Box>
       </Box>
     </>

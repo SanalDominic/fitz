@@ -25,6 +25,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   maxWidth: { md: 450 },
+  minWidth: { sm: 450 },
   bgcolor: "background.paper",
   boxShadow: 24,
   px: 2,
@@ -129,7 +130,7 @@ const AccountMenu = () => {
           </MenuItem>
         </Menu>
       </Box>
-      <Box sx={{ pb: 5 }}>
+      <Box>
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
@@ -147,15 +148,20 @@ const AccountMenu = () => {
                 <Box textAlign="end">
                   <CloseOutlinedIcon
                     onClick={modalClose}
-                    fontSize="small"
+                    fontSize="medium"
                     sx={{
                       cursor: "pointer",
                     }}
                   ></CloseOutlinedIcon>
                 </Box>
-                <Box sx={{ px: 4, pt: 0, pb: 4 }}>
+                <Box sx={{ px: 4, pt: 0, pb: 2 }}>
                   <authContext.Provider
-                    value={{ setToggleAuth, signupData, setSignupData,setModalOpen }}
+                    value={{
+                      setToggleAuth,
+                      signupData,
+                      setSignupData,
+                      setModalOpen,
+                    }}
                   >
                     {toggleAuth ? <Signup /> : <Login />}
                   </authContext.Provider>

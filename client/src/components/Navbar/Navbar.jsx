@@ -20,20 +20,12 @@ const Navbar = () => {
     <>
       <Box
         sx={{
-          display: { xs: "none", md: "flex" },
-          justifyContent: "space-between",
-          px: 3,
-          backgroundColor: "#2c2c2c",
-          height: "1.5rem",
-        }}
-      ></Box>
-      <Box
-        sx={{
-          display: { xs: "none", md: "flex" },
+          display: { xs: "none", sm: "flex" },
           justifyContent: "space-between",
           px: 3,
           backgroundColor: "#fff",
           height: "5rem",
+          borderBottom: '1px solid #eeeeee'
         }}
       >
         <Box
@@ -50,7 +42,7 @@ const Navbar = () => {
             underline="none"
             sx={{ fontWeight: "medium" }}
           >
-            FITZ
+            <Rlink to="/">FITZ</Rlink>
           </Typography>
         </Box>
         <Box
@@ -90,12 +82,16 @@ const Navbar = () => {
           </Tooltip>
           <Tooltip title="Wish list">
             <IconButton color="inherit" aria-label="wishlist">
-              <FavoriteBorderIcon></FavoriteBorderIcon>
+              <Rlink to="/Wishlist" style={{ height: "24px" }}>
+                <FavoriteBorderIcon></FavoriteBorderIcon>
+              </Rlink>
             </IconButton>
           </Tooltip>
           <Tooltip title="Cart">
             <IconButton color="inherit" aria-label="cart">
-              <ShoppingBasketOutlinedIcon></ShoppingBasketOutlinedIcon>
+              <Rlink to="/Cart" style={{ height: "24px" }}>
+                <ShoppingBasketOutlinedIcon></ShoppingBasketOutlinedIcon>
+              </Rlink>
             </IconButton>
           </Tooltip>
         </Box>

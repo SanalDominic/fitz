@@ -7,6 +7,7 @@ import { CarouselButton } from "../Theme/Custom";
 import { authContext } from "../Navbar/AccountMenu";
 import { API } from "../../API";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Signupotp = () => {
   const { setToggleAuth, signupData } = useContext(authContext);
@@ -39,6 +40,7 @@ const Signupotp = () => {
         console.log("success", res);
         if (res.status === 200 && res.data.verified) {
           setToggleAuth(false);
+          toast.success("Signedup Successfully !");
         }
       })
       .catch((error) => {

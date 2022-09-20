@@ -12,6 +12,7 @@ const CarouselButton = styled(Button)({
   borderRadius: "unset",
   backgroundColor: "unset",
   color: "#000",
+  transition: 'background-color 1s',
   "&:hover": {
     backgroundColor: "#000",
     borderColor: "#000",
@@ -38,6 +39,7 @@ const BannerButton = styled(Button)({
   backgroundColor: "#fff",
   borderRadius: "unset",
   color: "#000",
+  transition: 'background-color 1s',
   "&:hover": {
     backgroundColor: "#000",
     borderColor: "#000",

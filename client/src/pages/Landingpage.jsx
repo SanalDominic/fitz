@@ -4,6 +4,7 @@ import Carouselslide from "../components/Carousel/Carouselslide";
 import Featuredproducts from "../components/Featured/Featuredproducts";
 
 const Landingpage = () => {
+ 
   return (
     <>
       <Carouselslide />

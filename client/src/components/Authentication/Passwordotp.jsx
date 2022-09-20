@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 
 import { CarouselButton } from "../Theme/Custom";
 
-const Getotp = ({ stepperInc }) => {
+const Passwordotp = ({ stepperInc }) => {
   
   return (
     <>
@@ -25,8 +25,9 @@ const Getotp = ({ stepperInc }) => {
       <CarouselButton fullWidth onClick={stepperInc}>
         Send Otp
       </CarouselButton>
+      
     </>
   );
 };
 
-export default Getotp;
+export default Passwordotp;

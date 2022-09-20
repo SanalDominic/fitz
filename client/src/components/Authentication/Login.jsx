@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Loginform from "./Loginform";
-import Getotp from "./Getotp";
+import Passwordotp from "./Passwordotp";
 import Confirmotp from "./Confirmotp";
 import Changepassword from "./Changepassword";
 
@@ -17,7 +17,7 @@ const Login = () => {
       case 0:
         return <Loginform stepperInc={stepperInc} />;
       case 1:
-        return <Getotp stepperInc={stepperInc} />;
+        return <Passwordotp stepperInc={stepperInc} />;
       case 2:
         return <Confirmotp stepperInc={stepperInc} />;
       case 3:
