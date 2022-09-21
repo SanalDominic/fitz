@@ -19,13 +19,23 @@ const Navbar = () => {
   return (
     <>
       <Box
+        sx={{ height: "2rem", backgroundColor: "#000" }}
+        display="flex"
+        alignItems="center"
+        px={3}
+      >
+        <Typography variant="caption" color="#fff">
+          About Us
+        </Typography>
+      </Box>
+      <Box
         sx={{
           display: { xs: "none", sm: "flex" },
           justifyContent: "space-between",
           px: 3,
           backgroundColor: "#fff",
           height: "5rem",
-          borderBottom: '1px solid #eeeeee'
+          borderBottom: "1px solid #eeeeee",
         }}
       >
         <Box
