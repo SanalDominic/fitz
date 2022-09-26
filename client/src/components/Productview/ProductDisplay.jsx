@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
@@ -6,7 +6,7 @@ import ProductImageSlider from "./ProductImageSlider";
 import ProductDetails from "./ProductDetails";
 
 //style
-import "./ProductView.css";
+import "./ProductDisplay.css";
 import MoreDetails from "./MoreDetails";
 
 const ProductDisplay = () => {
@@ -22,10 +22,10 @@ const ProductDisplay = () => {
         }}
       >
         <Grid container spacing={2}>
-          <Grid item xs={7}>
+          <Grid item xs={12} md={6}>
             <ProductImageSlider />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={12} md={6}>
             <ProductDetails />
           </Grid>
         </Grid>

@@ -12,36 +12,42 @@ import Wishlist from "./pages/Wishlist";
 import Cart from "./pages/Cart";
 import Productview from "./pages/Productview";
 
-function App() {
-  return (
-    <>
-      <Box>
-        <Navbar />
-      </Box>
-      <Box>
-        <ToastContainer
-          position="top-right"
-          autoClose={1500}
-          hideProgressBar={false}
-          transition={Zoom}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
+import Test from "./pages/Test.jsx";
 
-        <Routes>
-          <Route path="/" element={<Landingpage />}></Route>
-          <Route path="/products" element={<Products />}></Route>
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/Cart" element={<Cart />} />
-          <Route path="/test" element={<Productview />}></Route>
-        </Routes>
-      </Box>
-    </>
-  );
+function App() {
+     return (
+          <>
+               <Box>
+                    <Navbar />
+               </Box>
+               <Box>
+                    <ToastContainer
+                         position="top-right"
+                         autoClose={1500}
+                         hideProgressBar={false}
+                         transition={Zoom}
+                         newestOnTop={false}
+                         closeOnClick
+                         rtl={false}
+                         pauseOnFocusLoss
+                         draggable
+                         pauseOnHover
+                    />
+
+                    <Routes>
+                         <Route path="/" element={<Landingpage />}></Route>
+                         <Route path="/products" element={<Products />}></Route>
+                         <Route path="/wishlist" element={<Wishlist />} />
+                         <Route path="/cart" element={<Cart />} />
+                         <Route
+                              path="/product"
+                              element={<Productview />}
+                         ></Route>
+                         <Route path="/test" element={<Test />}></Route>
+                    </Routes>
+               </Box>
+          </>
+     );
 }
 
 export default App;

@@ -5,6 +5,9 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
+import DressDetail from "./DressDetail";
+import Reviews from "./Reviews";
+
 const MoreDetails = () => {
   const [value, setValue] = useState("1");
 
@@ -12,18 +15,20 @@ const MoreDetails = () => {
     setValue(newValue);
   };
   return (
-    <Box sx={{ width: "100%", typography: "body1",pt:4 }}>
+    <Box sx={{ width: "100%", typography: "body1", pt: 4 }}>
       <TabContext value={value}>
-        <Box >
+        <Box>
           <TabList onChange={handleChange}>
             <Tab label="Details" value="1" />
-            <Tab label="Additional Information" value="2" />
-            <Tab label="Reviews" value="3" />
+            <Tab label="Reviews" value="2" />
           </TabList>
         </Box>
-        <TabPanel value="1">Item One</TabPanel>
-        <TabPanel value="2">Item Two</TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
+        <TabPanel value="1">
+          <DressDetail />
+        </TabPanel>
+        <TabPanel value="2">
+          <Reviews />
+        </TabPanel>
       </TabContext>
     </Box>
   );

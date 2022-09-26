@@ -1,0 +1,85 @@
+.number {
+     width: 3.375rem;
+     text-align: center;
+     border-left: unset;
+     border-right: unset;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.number::-webkit-outer-spin-button,
+.number::-webkit-inner-spin-button {
+     -webkit-appearance: none;
+     margin: 0;
+}
+
+/* Firefox */
+.number[type="number"] {
+     -moz-appearance: textfield;
+}
+
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+     letter-spacing: 0.1em;
+     border: 1px solid rgb(152, 152, 152) !important;
+     border-radius: unset !important;
+     color: #000 !important;
+     height: 3.375rem;
+}
+ol {
+     padding-left: 1rem;
+     list-style: circle;
+     font-size: 0.92rem;
+}
+ol > li {
+     padding: 0.5rem;
+}
+
+.css-heg063-MuiTabs-flexContainer {
+     display: flex;
+     justify-content: center;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+     color: #000 !important;
+}
+
+.css-1aquho2-MuiTabs-indicator {
+     background-color: #000 !important;
+     height: 0.063rem !important;
+}
+.slick-slide img {
+     width: 100%;
+     object-fit: cover;
+     object-position: center;
+}
+
+.navigator .slick-track {
+     display: -ms-inline-grid !important;
+     display: -moz-inline-grid !important;
+}
+
+.navigator .slick-track {
+     display: grid;
+}
+.navigator .slick-track .slick-slide {
+     width: 100% !important;
+     margin-bottom: 0.5rem !important;
+}
+
+.slick-prev,
+.slick-next {
+     display: none !important;
+}
+
+.navigator .slick-track .slick-slide :hover {
+     cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+     .navigator .slick-track {
+          display: inline-flex;
+     }
+     .navigator .slick-track .slick-slide {
+          margin-left: 4px;
+          margin-right: 4px;
+     }
+}
