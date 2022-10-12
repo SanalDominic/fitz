@@ -6,9 +6,12 @@
 **fitz** it's an e-commerce application to create a easy and simple "Shop"
 
 ## Screenshots
-<p>
-    <img src="SS\Login.PNG" width="400"/> <img src="SS\Signup.PNG" width="400"/>
-</p>
+<div>
+     <img src="https://res.cloudinary.com/db0syjum3/image/upload/v1665577179/screencapture-localhost-3000-2022-10-12-17_43_11_xmx7yc.png" /> 
+    -----------------------------------------------------------------------------------------------------------------------------------------------------
+       <img src="https://res.cloudinary.com/db0syjum3/image/upload/v1665577066/screencapture-localhost-3000-products-2022-10-12-17_44_33_mqo6ty.png" />
+    </div>
+
 
 ## Features
 
