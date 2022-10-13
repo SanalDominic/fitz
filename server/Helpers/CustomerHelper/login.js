@@ -1,54 +1,42 @@
 const bcrypt = require("bcrypt");
+
 const Customer = require("../../Dbmodels/CustomerModel");
-const jwt = require("jsonwebtoken");
+const jwt = require("../../utils/JwtToken");
 module.exports = {
-  login: async (req, res) => {
-    const { email, password } = req.body;
-    const isExist = await Customer.findOne({
-      email: email,
-    });
+     login: async (req, res) => {
+          try {
+               const { email, password } = req.body;
+               const isUserExist = await Customer.findOne({
+                    email: email,
+               });
 
-    if (!isExist) {
-      return res.status(406).json({ user: false });
-    }
+               if (!isUserExist) return res.status(406).json({ user: false });
 
-    const isPassword = await bcrypt.compare(password, isExist.password);
-    if (!isPassword) {
-      return res.status(406).json({ msg: "Invalid Credentials" });
-    }
-    //jwt token
+               const isPasswordValid = bcrypt.compare(
+                    password,
+                    isUserExist.password
+               );
+               if (!isPasswordValid)
+                    return res.status(406).json({ msg: "Invalid Credentials" });
 
-    const accessToken = jwt.sign(
-      {
-        username: isExist.fullName,
-        email: isExist.email,
-      },
-      process.env.ACCESS_TOKEN_SECRET,
-      {
-        expiresIn: "10m",
-      }
-    );
+               //jwt token creation
+               const tokenCreated = jwt.CreateJwtToken(isUserExist);
+               // Assigning access token in http-only cookie
+               res.cookie(
+                    "jwt",
+                    tokenCreated.accessToken,
+                    tokenCreated.refreshToken,
+                    {
+                         httpOnly: true,
+                         sameSite: "None",
+                         secure: true,
+                         maxAge: 24 * 60 * 60 * 1000,
+                    }
+               );
 
-    const refreshToken = jwt.sign(
-      {
-        username: isExist.fullName,
-        email: isExist.email,
-      },
-      process.env.REFRESH_TOKEN_SECRET,
-      {
-        expiresIn: "1d",
-      }
-    );
-
-    // Assigning access token in http-only cookie
-
-    res.cookie("jwt", accessToken, refreshToken, {
-      httpOnly: true,
-      sameSite: "None",
-      secure: true,
-      maxAge: 24 * 60 * 60 * 1000,
-    });
-
-    return res.status(200).json({ msg: "SignedIn Successfully !" });
-  },
+               return res.status(200).json({ msg: "SignedIn Successfully !" });
+          } catch (error) {
+               console.log(error.message);
+          }
+     },
 };

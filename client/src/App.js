@@ -9,7 +9,7 @@ import Landingpage from "./pages/Landingpage";
 import Products from "./pages/Products";
 import Navbar from "./components/Navbar/Navbar";
 import Wishlist from "./pages/Wishlist";
-import Cart from "./pages/Cart";
+import ShoppingCart from "./pages/ShoppingCart";
 import Productview from "./pages/Productview";
 
 import Test from "./pages/Test.jsx";
@@ -38,7 +38,7 @@ function App() {
                          <Route path="/" element={<Landingpage />}></Route>
                          <Route path="/products" element={<Products />}></Route>
                          <Route path="/wishlist" element={<Wishlist />} />
-                         <Route path="/cart" element={<Cart />} />
+                         <Route path="/cart" element={<ShoppingCart />} />
                          <Route
                               path="/product"
                               element={<Productview />}
